@@ -7,7 +7,7 @@ const express = require('express'),
 
 const jwt = require('jsonwebtoken');
 
-mongoose.connect('mongodb://localhost:27017/APIFonoApp', {useMongoClient: true});
+mongoose.connect('mongodb://admin:admin@ds135394.mlab.com:35394/fonoappapi', {useMongoClient: true});
 
 mongoose.Promise = global.Promise;
 
@@ -36,28 +36,7 @@ app.use("/wordPair", wordPairRoutes);
 const User = require('./models/userModel');
 const AgeRange = require('./models/ageRangeModel');
 
-app.get('/setup', function (req,res) {
-    const agerange = new AgeRange({
-        'minAge':3,
-        'maxAge':4
-    });
-    agerange.save(function (err) {
-        if(err) throw err;
-        console.log("ages added");
-        res.json({success:true});
-    });
 
-    const user = new User({
-        'login' :'test',
-        'password' : 'test',
-        'isAdmin':true
-    });
-    user.save(function (err) {
-        if(err) throw err;
-        console.log("user added");
-        res.json({success:true});
-    })
-});
 
 app.listen(port);
 
