@@ -25,7 +25,9 @@ router.post('/signin', function (req, res, next) {
         res.status(200).json({
             token: token,
             _id: user._id,
-            login: user.login
+            login: user.login,
+            password: user.password
+
         })
     });
 });
