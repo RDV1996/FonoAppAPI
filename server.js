@@ -36,8 +36,6 @@ app.use("/wordPair", wordPairRoutes);
 const User = require('./models/userModel');
 const AgeRange = require('./models/ageRangeModel');
 
-
-
 app.listen(port);
 
 console.log('SERVER IS RUNNING: ' + port);

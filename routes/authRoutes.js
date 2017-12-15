@@ -23,9 +23,9 @@ router.post('/signin', function (req, res, next) {
         }
         const token = jwt.sign({user: user}, 'FonoApp', {expiresIn:14400});
         res.status(200).json({
-            message: 'Successfully logged in',
             token: token,
-            user: user
+            _id: user._id,
+            login: user.login
         })
     });
 });
