@@ -35,6 +35,24 @@ router.get('/', function (req, res, next) {
     })
 });
 
+router.get('/:ageRange/:wordPairType', function (req, res, next) {
+    WordPair.find().exec(function(err, wordPair){
+        if (err){
+            return res.status(500).json({
+                title: 'Er heeft zich een fout voorgedaan',
+                error: err
+            });
+        }
+        var result = [];
+        for(i = 0; i < wordPair.length; i++) {
+            if (wordPair[i].ageRange.valueOf() == req.params.ageRange.valueOf() && wordPair[i].wordPairType.valueOf() == req.params.wordPairType.valueOf()) {
+                result.push(wordPair[i]);
+            }
+        }
+        res.status(200).json(result);
+    })
+});
+
 //get one zaal
 router.get('/:id', function (req, res, next) {
     WordPair.findById(req.params.id, function(err, wordPair){
