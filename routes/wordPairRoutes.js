@@ -35,7 +35,7 @@ router.get('/', function (req, res, next) {
     })
 });
 
-router.get('/:ageRange/:wordPairType', function (req, res, next) {
+router.get('/filters', function (req, res, next) {
     WordPair.find().exec(function(err, wordPair){
         if (err){
             return res.status(500).json({
@@ -44,8 +44,11 @@ router.get('/:ageRange/:wordPairType', function (req, res, next) {
             });
         }
         var result = [];
+        console.log(req.query.age);
+        console.log(req.query.type);
+
         for(i = 0; i < wordPair.length; i++) {
-            if (wordPair[i].ageRange.valueOf() == req.params.ageRange.valueOf() && wordPair[i].wordPairType.valueOf() == req.params.wordPairType.valueOf()) {
+            if (wordPair[i].ageRange.valueOf() == req.query.age.valueOf() && wordPair[i].wordPairType.valueOf() == req.query.type.valueOf()) {
                 result.push(wordPair[i]);
             }
         }
