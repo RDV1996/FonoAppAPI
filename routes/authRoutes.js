@@ -6,7 +6,7 @@ const User = require('../models/userModel');
 
 //TODO we gebruiken nu deze login ipv die hierboven, is dit ok?
 router.post('/signin', function (req, res, next) {
-    console.log(req.body);
+    console.log(req.body.login);
     User.findOne({login: req.body.login}, function(err, user){
         console.log(user);
         if (err) {
@@ -15,7 +15,7 @@ router.post('/signin', function (req, res, next) {
                 error: err
             });
         }
-        if (user == null){
+        if (user == null || user.password.valueOf() != req.body.password.valueOf()){
             return res.status(401).json({
                 title: 'Login mislukt',
                 error: {message: 'Invalid login credentials'}
