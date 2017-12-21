@@ -7,7 +7,9 @@ router.post('/', function (req, res, next) {
     const user = new User({
         login: req.body.login,
         password: req.body.password,
-        isAdmin : req.body.isAdmin
+        isAdmin : req.body.isAdmin,
+        voornaam: req.body.voornaam,
+        achternaam: req.body.achternaam
     });
     user.save(function (err, result) {
         if (err) {

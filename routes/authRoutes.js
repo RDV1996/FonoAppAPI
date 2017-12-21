@@ -26,8 +26,9 @@ router.post('/signin', function (req, res, next) {
             token: token,
             _id: user._id,
             login: user.login,
-            password: user.password
-
+            password: user.password,
+            voornaam : user.voornaam,
+            achternaam: user.achternaam
         })
     });
 });
