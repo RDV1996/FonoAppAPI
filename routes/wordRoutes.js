@@ -6,11 +6,7 @@ const Word = require('../models/wordModel');
 router.post('/', function (req, res, next) {
     const word = new Word({
         word: req.body.word,
-        mainImg: req.body.mainImg,
-        subImg: req.body.subImg,
-        wordSound: req.body.wordSound,
-        sentence: req.body.sentence,
-        sentenceSound: req.body.sentenceSound
+        sentence: req.body.sentence
     });
     word.save(function (err, result) {
         if (err) {
